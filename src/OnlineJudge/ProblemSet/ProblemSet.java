@@ -6,6 +6,7 @@
 package OnlineJudge.ProblemSet;
 
 import java.io.IOException;
+import java.util.HashMap;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,6 +23,7 @@ import javafx.stage.Stage;
  */
 public class ProblemSet extends Application {
     
+    public static HashMap < String , Problem > Problems = new HashMap < String , Problem >();
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("ProblemSetFXML.fxml"));

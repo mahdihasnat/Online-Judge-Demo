@@ -45,14 +45,14 @@ public class OnlineJudgeFXMLController implements Initializable {
     private void OptionUserSelected(ActionEvent event) throws IOException {
         System.out.println("User selected");
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("User/LogInFXML.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/User/LogInFXML.fxml"));
 
             Scene scene = new Scene(root, 720, 600);
 
             OnlineJudge.PrimaryStage.setScene(scene);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.exit(-1);
+            
         }
     }
 

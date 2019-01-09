@@ -15,25 +15,25 @@
         <URL value="@userfxml.css" />
     </stylesheets>
    <children>
-      <HBox layoutX="23.0" layoutY="39.0" prefHeight="35.0" prefWidth="676.0">
+      <HBox layoutX="23.0" layoutY="39.0" prefHeight="35.0" prefWidth="680.0">
          <children>
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#HomeButtonClicked" prefHeight="30.0" prefWidth="100.0" text="Home" />
-            <Button layoutX="80.0" layoutY="10.0" mnemonicParsing="false" onAction="#ContestButtonClicked" prefHeight="30.0" prefWidth="90.0" text="Contest" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#ProblemsetButtonClicked" prefHeight="30.0" prefWidth="93.0" text="Problemset" />
-            <Button layoutX="150.0" layoutY="10.0" mnemonicParsing="false" onAction="#SubmitSolutionButtonClicked" prefHeight="30.0" prefWidth="117.0" text="Submit Solution" />
-            <Button layoutX="290.0" layoutY="10.0" mnemonicParsing="false" onAction="#StatusButtonClicked" prefHeight="30.0" prefWidth="50.0" text="Status" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#HomeButtonClicked" prefHeight="31.0" prefWidth="68.0" text="Home" />
+            <Button layoutX="80.0" layoutY="10.0" mnemonicParsing="false" onAction="#ContestButtonClicked" prefHeight="31.0" prefWidth="72.0" text="Contest" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#ProblemsetButtonClicked" prefHeight="31.0" prefWidth="103.0" text="Problemset" />
+            <Button layoutX="150.0" layoutY="10.0" mnemonicParsing="false" onAction="#SubmitSolutionButtonClicked" prefHeight="31.0" prefWidth="132.0" text="Submit Solution" />
+            <Button layoutX="290.0" layoutY="10.0" mnemonicParsing="false" onAction="#StatusButtonClicked" prefHeight="31.0" prefWidth="64.0" text="Status" />
             <Button layoutX="150.0" layoutY="10.0" mnemonicParsing="false" onAction="#MySubmissionButtonClicked" prefHeight="30.0" prefWidth="131.0" text="My Submission" />
-            <Button layoutX="220.0" layoutY="10.0" mnemonicParsing="false" onAction="#MyProfileButtonClicked" prefHeight="30.0" prefWidth="94.0" text="My Profile" />
+            <Button layoutX="220.0" layoutY="10.0" mnemonicParsing="false" onAction="#MyProfileButtonClicked" prefHeight="31.0" prefWidth="111.0" text="My Profile" />
          </children>
       </HBox>
-      <HBox layoutX="445.0" layoutY="6.0" prefHeight="25.0" prefWidth="253.0">
+      <HBox layoutX="355.0" layoutY="6.0" prefHeight="31.0" prefWidth="349.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="JUSTIFY" wrappingWidth="66.0" />
-            <Text fx:id="UserName" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UserName" textAlignment="JUSTIFY" wrappingWidth="108.0" />
-            <Button mnemonicParsing="false" onAction="#LogOutButtonClicked" prefHeight="25.0" prefWidth="105.0" text="Log Out" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="JUSTIFY" wrappingWidth="91.0" />
+            <Text fx:id="UserName" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UserName" textAlignment="JUSTIFY" wrappingWidth="148.0" />
+            <Button mnemonicParsing="false" onAction="#LogOutButtonClicked" prefHeight="31.0" prefWidth="110.0" text="Log Out" />
          </children>
       </HBox>
-      <AnchorPane fx:id="Node" layoutX="22.0" layoutY="81.0" prefHeight="505.0" prefWidth="664.0" />
+      <AnchorPane fx:id="Node" layoutX="22.0" layoutY="81.0" prefHeight="500.0" prefWidth="680.0" />
    </children>
    <opaqueInsets>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
