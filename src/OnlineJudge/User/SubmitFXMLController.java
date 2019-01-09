@@ -88,5 +88,13 @@ public class SubmitFXMLController implements Initializable {
     @FXML
     private void SubmitButtonClicked(ActionEvent event) {
     }
+
+    @FXML
+    private void ChoseFileButtonClicked(ActionEvent event) {
+        if(SelectLanguageButton.getText().equals("C++"))
+        {
+            
+        }
+    }
     
 }
