@@ -6,8 +6,19 @@
 package OnlineJudge.User;
 
 import OnlineJudge.ProblemSet.ProblemShowFXMLController;
+import OnlineJudge.*;
+import OnlineJudge.Submission.Submission;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +27,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import org.omg.CORBA_2_3.portable.InputStream;
 
 /**
  * FXML Controller class
@@ -82,11 +95,61 @@ public class SubmitFXMLController implements Initializable {
     @FXML
     private void JavaChoosed(ActionEvent event) {
         SelectLanguageButton.setText("Java");
-         SourceCode.setText(JavaCode);
+        SourceCode.setText(JavaCode);
     }
 
     @FXML
     private void SubmitButtonClicked(ActionEvent event) {
+        System.out.println("Submit button clicked");
+        if(ProblemName.getText().equals(""))
+        {
+            ErrorMessage.setText("Select Problem First");
+            return ;
+        }
+        if(!SelectLanguageButton.getText().equals("C++")&&!SelectLanguageButton.getText().equals("Java"))
+        {
+            ErrorMessage.setText("Select Language First");
+            return ;
+        }
+        System.out.println("Submit success");
+        ErrorMessage.setText("Submission successful");
+        OnlineJudge.Submissions.add(new Submission(ProblemIdMessage.isVisible()?ProblemName.getText():ProblemShowFXMLController.problem.getId(),LocalUser.user.Handle,SelectLanguageButton.getText(),SourceCode.getText()));
+        
+    }
+    private String ReadFromFile(File f) 
+    {
+        String src="";
+        try {
+            FileInputStream fis=new FileInputStream(f);
+            BufferedInputStream bir= new BufferedInputStream(fis);
+            int c=1;
+            while((c=bir.read())!=-1)
+            {
+                
+                System.out.print((char)c);
+                src+=Character.toString((char)c);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+        return src;
+    }
+    @FXML
+    private void ChoseFileButtonClicked(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Upload Source Code File");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("C++ File","*.cpp"),new FileChooser.ExtensionFilter("Java File","*.java"));
+        File SourceFile = fileChooser.showOpenDialog(OnlineJudge.PrimaryStage);
+        if(SourceFile!=null)
+        {
+            SourceCode.setText(ReadFromFile(SourceFile));
+        }
+        else 
+        {
+            System.out.println("File not choosen");
+        }
+        
     }
     
 }

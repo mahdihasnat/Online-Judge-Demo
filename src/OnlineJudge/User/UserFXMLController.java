@@ -107,6 +107,19 @@ public class UserFXMLController implements Initializable {
 
     @FXML
     private void StatusButtonClicked(ActionEvent event) {
+        System.out.println("Status button clicked");
+        try
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/User/StatusFXML.fxml"));
+            Node.getChildren().removeAll(Node.getChildren());
+            Node.getChildren().add(root);
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            
+        }
     }
 
     @FXML
