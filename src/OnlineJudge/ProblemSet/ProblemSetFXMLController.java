@@ -54,17 +54,19 @@ public class ProblemSetFXMLController implements Initializable {
         ProblemsTable.setItems(data);
         
     }    
-
+/*
     @FXML
     private void ShowProblem(KeyEvent event) {
         System.out.println("ShowProblem in keyboard ");
-        //Problem SelectedProblem= ProblemsTable.getSelectionModel().getSelectedItem();
-        //System.out.println("Selected problm "+SelectedProblem);
-    }
+        }
+*/
 
     @FXML
     private void ShowProblem(MouseEvent event) {
         System.out.println("ShowProblem in mouse ");
+        Problem SelectedProblem= ProblemsTable.getSelectionModel().getSelectedItem();
+        System.out.println("Selected problm "+SelectedProblem);
+    
     }
     
 }

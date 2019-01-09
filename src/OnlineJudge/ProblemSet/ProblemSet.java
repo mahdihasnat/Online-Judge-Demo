@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 public class ProblemSet extends Application {
     
     public static HashMap < String , Problem > Problems = new HashMap < String , Problem >();
+    
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("ProblemSetFXML.fxml"));

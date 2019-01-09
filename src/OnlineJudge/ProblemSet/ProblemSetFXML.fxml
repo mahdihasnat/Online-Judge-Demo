@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OnlineJudge.ProblemSet.ProblemSetFXMLController">
    <children>
-      <TableView fx:id="ProblemsTable" layoutX="-2.0" layoutY="-3.0" onKeyPressed="#ShowProblem" onMouseClicked="#ShowProblem" prefHeight="500.0" prefWidth="680.0">
+      <TableView fx:id="ProblemsTable" layoutX="-2.0" layoutY="-3.0" onKeyPressed="#ShowProblem" onMousePressed="#ShowProblem" prefHeight="500.0" prefWidth="680.0">
         <columns>
           <TableColumn fx:id="ProblemId" prefWidth="146.0" text="Problem Id" />
           <TableColumn fx:id="ProblemName" prefWidth="539.0" text="Problem Name" />

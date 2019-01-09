@@ -37,6 +37,11 @@ public class Problem {
     public String getName() {
         return Name;
     }
+
+    @Override
+    public String toString() {
+        return "Problem{" + "Id=" + Id + ", Statement=" + Statement + ", Type=" + Type + ", VerifierCpp=" + VerifierCpp + ", VerifierJava=" + VerifierJava + ", Inputs=" + Inputs + ", Outputs=" + Outputs + ", TotalAccepted=" + TotalAccepted + ", TotalAttempted=" + TotalAttempted + ", Name=" + Name + ", Tags=" + Tags + ", TimeLimit=" + TimeLimit + '}';
+    }
     
     
 }
