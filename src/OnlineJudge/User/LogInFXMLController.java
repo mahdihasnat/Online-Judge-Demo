@@ -74,6 +74,12 @@ public class LogInFXMLController extends AnchorPane implements Initializable {
 
     @FXML
     private void LogInButtonClicked(ActionEvent event) {
+        if(Handle.getText().equals("")&&Password.getText().equals(""))
+        {
+            Password.setText("admin");
+            Handle.setText("admin");
+        }
+        
         if(Handle.getText().equals("admin")&&Password.getText().equals("admin"))
         {
                 LocalUser.setAdmin();

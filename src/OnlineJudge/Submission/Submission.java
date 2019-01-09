@@ -13,19 +13,65 @@ import java.time.LocalDateTime;
  */
 public class Submission {
     public String ProbmemId;
-    public String UserHandle;
-    public String Lang;
+    public String Handle;
+    public String Language;
     public String Code;
     public String Verdict;
     public String Time;
-    public Submission(String ProbmemId, String UserHandle, String Lang, String Code) {
+    public String TimeTaken;
+    public String MemoryTaken;
+    public String Id;
+    public String ProblemName;
+    public Submission(String ProbmemId, String Handle, String Lang, String Code) {
         this.ProbmemId = ProbmemId;
-        this.UserHandle = UserHandle;
-        this.Lang = Lang;
+        this.ProblemName="in submission";
+        this.Handle = Handle;
+        this.Language = Lang;
         this.Code = Code;
         Time=LocalDateTime.now().toString();
-        Verdict= "";
-        
+        Verdict= "Not Judged Yet";
+        TimeTaken="";
+        MemoryTaken="";
+    }
+
+    public String getProbmemId() {
+        return ProbmemId;
+    }
+
+    public String getHandle() {
+        return Handle;
+    }
+
+    public String getLanguage() {
+        return Language;
+    }
+
+    public String getCode() {
+        return Code;
+    }
+
+    public String getVerdict() {
+        return Verdict;
+    }
+
+    public String getTime() {
+        return Time;
+    }
+
+    public String getTimeTaken() {
+        return TimeTaken;
+    }
+
+    public String getMemoryTaken() {
+        return MemoryTaken;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public String getProblemName() {
+        return ProblemName;
     }
     
     

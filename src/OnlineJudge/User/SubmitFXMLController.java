@@ -6,6 +6,8 @@
 package OnlineJudge.User;
 
 import OnlineJudge.ProblemSet.ProblemShowFXMLController;
+import OnlineJudge.*;
+import OnlineJudge.Submission.Submission;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -87,14 +89,21 @@ public class SubmitFXMLController implements Initializable {
 
     @FXML
     private void SubmitButtonClicked(ActionEvent event) {
-    }
-
-    @FXML
-    private void ChoseFileButtonClicked(ActionEvent event) {
-        if(SelectLanguageButton.getText().equals("C++"))
+        System.out.println("Submit button clicked");
+        if(ProblemName.getText().equals(""))
         {
-            
+            ErrorMessage.setText("Select Problem First");
+            return ;
         }
+        if(!SelectLanguageButton.getText().equals("C++")&&!SelectLanguageButton.getText().equals("Java"))
+        {
+            ErrorMessage.setText("Select Language First");
+            return ;
+        }
+        System.out.println("Submit success");
+        ErrorMessage.setText("Submission successful");
+        OnlineJudge.Submissions.add(new Submission(ProblemIdMessage.isVisible()?ProblemName.getText():ProblemShowFXMLController.problem.getId(),LocalUser.user.Handle,SelectLanguageButton.getText(),SourceCode.getText()));
+        
     }
     
 }
