@@ -10,11 +10,24 @@ package OnlineJudge.User;
  * @author MAHDI
  */
 public class User {
-    String UserName;
-    String EmailAddress;
-    String Password;
+    String Name;
     String Handle;
+    String Email;
+    String Country;
     String University;
+    String Password;
+
+    public User(String Name, String Handle, String Email, String Country, String University, String Password) {
+        if(Country.equals("")) Country="Bangladesh";
+        if(University.equals("")) University="BUET";
+        this.Name = Name;
+        this.Handle = Handle;
+        this.Email = Email;
+        this.Country = Country;
+        this.University = University;
+        this.Password = Password;
+    }
+
     
     
 }

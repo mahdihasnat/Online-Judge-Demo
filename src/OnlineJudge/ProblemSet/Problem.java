@@ -12,6 +12,7 @@ import java.io.File;
  * @author MAHDI
  */
 public class Problem {
+    public String Id;
     public File Statement;// pdf type statement 
     public String Type;// "static" ,"dynamic","interactive"
     public File VerifierCpp;// if dynamic then verifier cpp file
@@ -20,8 +21,22 @@ public class Problem {
     public File[] Outputs;
     public int TotalAccepted;
     public int TotalAttempted;
-    public int ProblemNumber;
-    public String ProblemName;
+    public String Name;
     public String[] Tags;
     public Integer TimeLimit; /// always millisec
+    public Problem(String Id,String Name )
+    {
+        this.Id=Id;
+        this.Name=Name;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public String getName() {
+        return Name;
+    }
+    
+    
 }

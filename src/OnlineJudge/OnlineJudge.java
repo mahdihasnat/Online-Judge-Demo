@@ -5,20 +5,24 @@
  */
 package OnlineJudge;
 
+import OnlineJudge.User.User;
+import java.util.HashMap;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 /**
  *
  * @author MAHDI
  */
-public class OnlineJudge extends Application {
+public class OnlineJudge  extends Application  {
     public static Stage PrimaryStage;
     public static AnchorPane Nodes ;
+    public static HashMap < String , User > getUser = new HashMap< String, User>() ;
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/OnlineJudgeFXML.fxml"));

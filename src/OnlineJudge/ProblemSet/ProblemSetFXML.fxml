@@ -6,9 +6,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="OnlineJudge.ProblemSet.ProblemSetFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OnlineJudge.ProblemSet.ProblemSetFXMLController">
    <children>
-      <CheckBox layoutX="254.0" layoutY="158.0" mnemonicParsing="false" text="CheckBox" />
+      <TableView fx:id="ProblemsTable" layoutX="-2.0" layoutY="-3.0" onKeyPressed="#ShowProblem" onMouseClicked="#ShowProblem" prefHeight="500.0" prefWidth="680.0">
+        <columns>
+          <TableColumn fx:id="ProblemId" prefWidth="146.0" text="Problem Id" />
+          <TableColumn fx:id="ProblemName" prefWidth="539.0" text="Problem Name" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
