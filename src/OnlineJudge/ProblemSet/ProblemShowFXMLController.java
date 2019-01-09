@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
  * @author MAHDI
  */
 public class ProblemShowFXMLController implements Initializable {
+    public static Problem problem;
 
     /**
      * Initializes the controller class.

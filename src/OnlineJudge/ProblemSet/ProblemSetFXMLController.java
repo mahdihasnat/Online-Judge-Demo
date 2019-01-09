@@ -66,6 +66,8 @@ public class ProblemSetFXMLController implements Initializable {
         System.out.println("ShowProblem in mouse ");
         Problem SelectedProblem= ProblemsTable.getSelectionModel().getSelectedItem();
         System.out.println("Selected problm "+SelectedProblem);
+        ProblemShowFXMLController.problem= SelectedProblem;
+        
     
     }
     
