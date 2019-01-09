@@ -90,6 +90,19 @@ public class UserFXMLController implements Initializable {
 
     @FXML
     private void SubmitSolutionButtonClicked(ActionEvent event) {
+        System.out.println("Submit button clicked");
+        try
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/User/SubmitFXML.fxml"));
+            Node.getChildren().removeAll(Node.getChildren());
+            Node.getChildren().add(root);
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            
+        }
     }
 
     @FXML
