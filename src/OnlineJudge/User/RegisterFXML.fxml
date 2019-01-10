@@ -77,5 +77,6 @@
       </Button>
       <Label fx:id="PromptLavel" layoutX="236.0" layoutY="483.0" prefHeight="30.0" prefWidth="182.0" />
       <Button fx:id="LogInButton" layoutX="466.0" layoutY="529.0" mnemonicParsing="false" onAction="#LogInButtonCreated" prefHeight="31.0" prefWidth="72.0" text="Log In" />
+      <fx:include source="../../../../../../IdeaProjects/sign%20in/src/sample/sample.fxml" />
    </children>
 </AnchorPane>
