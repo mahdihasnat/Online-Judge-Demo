@@ -6,6 +6,7 @@
 package OnlineJudge.Admin;
 
 import OnlineJudge.OnlineJudge;
+import OnlineJudge.ProblemSet.ProblemSet;
 import OnlineJudge.User.LocalUser;
 import OnlineJudge.User.User;
 import java.io.IOException;
@@ -40,6 +41,7 @@ public class AdminFXMLController implements Initializable {
         OnlineJudge.Nodes=Node;
         UserName.setText("Server ");
         LocalUser.setUser(new User("Server"));
+        ProblemSet.LoadProblemSet();
         // TODO
     }    
 

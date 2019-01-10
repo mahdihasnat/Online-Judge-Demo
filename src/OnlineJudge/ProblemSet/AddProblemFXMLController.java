@@ -133,8 +133,14 @@ public class AddProblemFXMLController implements Initializable {
             return ;
         }
         ErrorMessege.setText("Problem added");
-        
-        
+        /// save problem 
+        Problem p;
+        if(pType.equals("Static"))
+        p=new Problem(pId,pStatement,pType,pInputs,pOutputs,pName,pTimeLimit,pMemoryLimit);
+        else 
+          p=  new Problem(pId,pStatement,pType,pVerifierCode,pInputs,pName,pTimeLimit,pMemoryLimit);
+        ProblemSet.Problems.put(pId, p);
+        ProblemSet.SaveProblemSet();
     }
 
     @FXML

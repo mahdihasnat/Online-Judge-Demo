@@ -41,13 +41,8 @@ public class ProblemSetFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("Table View ini");
         //ProblemsTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-         ObservableList<Problem> data = FXCollections.observableArrayList(
-    new Problem("Jacob", "Smith"),
-    new Problem("Isabella", "Johnson" ),
-    new Problem("Ethan", "Williams" ),
-    new Problem("Emma", "Jones" ),
-    new Problem("Michael", "Brown" )
-        );
+         ObservableList<Problem> data = FXCollections.observableArrayList();
+        data.addAll(ProblemSet.Problems.values());
         
         ProblemId.setCellValueFactory(new PropertyValueFactory<Problem,String>("Id"));
         ProblemName.setCellValueFactory(new PropertyValueFactory<Problem,String>("Name"));
