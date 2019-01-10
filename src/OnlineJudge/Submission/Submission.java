@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
  * @author MAHDI
  */
 public class Submission {
+    public static Integer MaxId=0;
     public String ProbmemId;
     public String Handle;
     public String Language;
@@ -20,7 +21,7 @@ public class Submission {
     public String Time;
     public String TimeTaken;
     public String MemoryTaken;
-    public String Id;
+    public Integer Id;
     public String ProblemName;
     public Submission(String ProbmemId, String Handle, String Lang, String Code) {
         this.ProbmemId = ProbmemId;
@@ -32,6 +33,8 @@ public class Submission {
         Verdict= "Not Judged Yet";
         TimeTaken="";
         MemoryTaken="";
+        this.Id=MaxId;
+        MaxId++;
     }
 
     public String getProbmemId() {
@@ -66,7 +69,7 @@ public class Submission {
         return MemoryTaken;
     }
 
-    public String getId() {
+    public Integer getId() {
         return Id;
     }
 

@@ -5,16 +5,20 @@
  */
 package OnlineJudge;
 
+import OnlineJudge.ProblemSet.ProblemSet;
 import OnlineJudge.Submission.Submission;
+import OnlineJudge.Submission.SubmissionSet;
 import OnlineJudge.User.User;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Pair;
 
 /**
@@ -26,7 +30,6 @@ public class OnlineJudge  extends Application  {
     public static Parent PrimaryRoot;
     public static AnchorPane Nodes ;
     public static HashMap < String , User > getUser = new HashMap< String, User>() ;
-    public static ArrayList < Submission > Submissions;
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/OnlineJudgeFXML.fxml"));
@@ -37,13 +40,19 @@ public class OnlineJudge  extends Application  {
         stage.show();
         PrimaryStage=stage;
         PrimaryRoot=root;
+        stage.setAlwaysOnTop(true);
+        stage.setOnCloseRequest((event) -> {
+            SubmissionSet.SaveSubmissionSet();
+            ProblemSet.SaveProblemSet();
+            
+        });
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Submissions = new ArrayList< Submission > ();
+        
         launch(args);
         
     }

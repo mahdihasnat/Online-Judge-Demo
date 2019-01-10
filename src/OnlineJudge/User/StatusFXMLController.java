@@ -8,6 +8,7 @@ package OnlineJudge.User;
 import OnlineJudge.OnlineJudge;
 import OnlineJudge.ProblemSet.Problem;
 import OnlineJudge.Submission.Submission;
+import OnlineJudge.Submission.SubmissionSet;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -53,23 +54,25 @@ public class StatusFXMLController implements Initializable {
         
         
         SubmissionId.setCellValueFactory(new PropertyValueFactory<Submission,String>("Id"));
-        System.out.println("Here cell detected");
+        
         SubmissionTime.setCellValueFactory(new PropertyValueFactory<Submission,String>("Time"));
-        System.out.println("Here cell detected");
+        
         UserHandle.setCellValueFactory(new PropertyValueFactory<Submission,String>("Handle"));
-        System.out.println("Here cell detected");
+        
         ProblemName.setCellValueFactory(new PropertyValueFactory<Submission,String>("ProblemName"));
-        System.out.println("Here cell detected");
+        
         Language.setCellValueFactory(new PropertyValueFactory<Submission,String>("Language"));
-        System.out.println("Here cell detected");
+        
         Verdict.setCellValueFactory(new PropertyValueFactory<Submission,String>("Verdict"));
-        System.out.println("Here cell detected");
+        
         TimeTaken.setCellValueFactory(new PropertyValueFactory<Submission,String>("TimeTaken"));
-        System.out.println("Here cell detected");
+        
         MemoryTaken.setCellValueFactory(new PropertyValueFactory<Submission,String>("MemoryTaken"));
-        System.out.println("Here cell detected");
+        
+        SubmissionSet.LoadSubmissionSet();
+        
         StatusTable.getItems().removeAll(StatusTable.getItems());
-        StatusTable.getItems().addAll(OnlineJudge.Submissions);
+        StatusTable.getItems().addAll(SubmissionSet.Submissions.values());
         
         
     }    
