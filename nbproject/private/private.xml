@@ -3,15 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/User/StatusFXMLController.java</file>
-            <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/OnlineJudge.java</file>
-            <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/User/UserFXMLController.java</file>
-            <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/User/StatusFXML.fxml</file>
-            <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/User/UserFXML.fxml</file>
-            <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/Submission/Submission.java</file>
-            <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/User/SubmitFXMLController.java</file>
-            <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/OnlineJudgeFXMLController.java</file>
-            <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/User/LocalUser.java</file>
+            <file>file:/C:/Users/Solaiman/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/ProblemSet/Problem.java</file>
+            <file>file:/C:/Users/Solaiman/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/ProblemSet/problemshowfxml.css</file>
+            <file>file:/C:/Users/Solaiman/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/User/User.java</file>
+            <file>file:/C:/Users/Solaiman/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/Admin/Admin.java</file>
         </group>
     </open-files>
 </project-private>
