@@ -23,6 +23,7 @@ import javafx.util.Pair;
  */
 public class OnlineJudge  extends Application  {
     public static Stage PrimaryStage;
+    public static Parent PrimaryRoot;
     public static AnchorPane Nodes ;
     public static HashMap < String , User > getUser = new HashMap< String, User>() ;
     public static ArrayList < Submission > Submissions;
@@ -35,6 +36,7 @@ public class OnlineJudge  extends Application  {
         stage.setScene(scene);
         stage.show();
         PrimaryStage=stage;
+        PrimaryRoot=root;
     }
 
     /**

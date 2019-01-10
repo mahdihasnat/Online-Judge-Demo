@@ -27,6 +27,10 @@ public class User {
         this.University = University;
         this.Password = Password;
     }
+    public User(String Name)
+    {
+        this.Name = Name;
+    }
 
     // solaimon 123
     // mahdi 

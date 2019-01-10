@@ -59,6 +59,14 @@ public class OnlineJudgeFXMLController implements Initializable {
     @FXML
     private void OptionServerSelected(ActionEvent event) {
         System.out.println("Server selected");
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/Admin/AdminFXML.fxml"));
+            System.out.println("FXML loaded");
+            OnlineJudge.PrimaryStage.setScene(new Scene(root));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            
+        }
     }
 
 }

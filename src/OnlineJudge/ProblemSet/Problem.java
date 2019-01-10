@@ -6,12 +6,13 @@
 package OnlineJudge.ProblemSet;
 
 import java.io.File;
+import java.io.Serializable;
 
 /**
  *
  * @author MAHDI
  */
-public class Problem {
+public class Problem implements Serializable{
     public String Id;
     public File Statement;// pdf type statement 
     public String Type;// "static" ,"dynamic","interactive"
