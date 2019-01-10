@@ -7,6 +7,7 @@ package OnlineJudge.ProblemSet;
 
 import java.io.File;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,15 +17,14 @@ public class Problem implements Serializable{
     public String Id;
     public File Statement;// pdf type statement 
     public String Type;// "static" ,"dynamic","interactive"
-    public File VerifierCpp;// if dynamic then verifier cpp file
-    public File VerifierJava;// if dynamic then verifier java file
-    public File[] Inputs;
-    public File[] Outputs;
+    public File VerifierCode;// if dynamic then verifier cpp 
+    public ArrayList< File > Inputs;
+    public ArrayList< File > Outputs;
     public int TotalAccepted;
     public int TotalAttempted;
     public String Name;
-    public String[] Tags;
-    public Integer TimeLimit; /// always millisec
+    public Integer TimeLimit;/// always millisec
+    public Integer MemoryLimit;
     public Problem(String Id,String Name )
     {
         this.Id=Id;
@@ -41,8 +41,12 @@ public class Problem implements Serializable{
 
     @Override
     public String toString() {
-        return "Problem{" + "Id=" + Id + ", Statement=" + Statement + ", Type=" + Type + ", VerifierCpp=" + VerifierCpp + ", VerifierJava=" + VerifierJava + ", Inputs=" + Inputs + ", Outputs=" + Outputs + ", TotalAccepted=" + TotalAccepted + ", TotalAttempted=" + TotalAttempted + ", Name=" + Name + ", Tags=" + Tags + ", TimeLimit=" + TimeLimit + '}';
+        return "Problem{" + "Id=" + Id + ", Statement=" + Statement + ", Type=" + Type + ", VerifierCode=" + VerifierCode + ", Inputs=" + Inputs + ", Outputs=" + Outputs + ", TotalAccepted=" + TotalAccepted + ", TotalAttempted=" + TotalAttempted + ", Name=" + Name + ", TimeLimit=" + TimeLimit + ", MemoryLimit=" + MemoryLimit + '}';
     }
+
+
+
+    
     
     
 }

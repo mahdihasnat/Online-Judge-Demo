@@ -14,6 +14,6 @@
    <children>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#AddProblemButtonClicked" prefHeight="31.0" prefWidth="137.0" text="Add Problem" />
       <Button layoutX="151.0" layoutY="14.0" mnemonicParsing="false" onAction="#DeleteProblemButtonClicked" text="Delete Problem" />
-      <AnchorPane fx:id="EditProblemNode" layoutX="14.0" layoutY="46.0" prefHeight="454.0" prefWidth="680.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0" />
+      <AnchorPane fx:id="EditProblemNode" layoutX="14.0" layoutY="46.0" prefHeight="460.0" prefWidth="680.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0" />
    </children>
 </AnchorPane>
