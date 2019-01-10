@@ -16,5 +16,14 @@ public class LocalUser {
         System.out.println("Admin set");
         user = new User("Admin","admin","Admin@admin.com","BD","BUET","admin");
     }
+
+    public static User getUser() {
+        return user;
+    }
+
+    public static void setUser(User user) {
+        LocalUser.user = user;
+    }
+    
     
 }
