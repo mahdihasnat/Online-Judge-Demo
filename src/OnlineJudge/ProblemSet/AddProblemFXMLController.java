@@ -117,7 +117,7 @@ public class AddProblemFXMLController implements Initializable {
         pId=Id.getText();
         pMemoryLimit=Integer.parseInt(MemoryLimit.getText());
         pTimeLimit=Integer.parseInt(TimeLimit.getText());
-        if(pName=="")
+        if(pName.equals(""))
         {
             ErrorMessege.setText("Select name first");
             return ;
