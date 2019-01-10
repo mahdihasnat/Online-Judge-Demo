@@ -79,7 +79,7 @@ public class ProblemSet extends Application {
                     System.out.println("Problemse dir not created");
                 }
             }
-            File Dest = new File(path.getAbsolutePath()+"problems.dat");
+            File Dest = new File(path.getAbsolutePath()+FileSeparator+"problems.dat");
             if(!Dest.exists()) return ;
             FileInputStream fis = new FileInputStream(Dest);
             ObjectInputStream ois = new ObjectInputStream(fis);
