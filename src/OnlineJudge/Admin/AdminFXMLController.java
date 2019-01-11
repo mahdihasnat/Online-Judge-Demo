@@ -41,7 +41,7 @@ public class AdminFXMLController implements Initializable {
         OnlineJudge.Nodes=Node;
         UserName.setText("Server ");
         LocalUser.setUser(new User("Server"));
-        ProblemSet.LoadProblemSet();
+        
         // TODO
     }    
 

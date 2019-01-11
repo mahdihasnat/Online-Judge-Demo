@@ -27,7 +27,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class StatusFXMLController implements Initializable {
 
     @FXML
-    private TableColumn<Submission, String > SubmissionId;
+    private TableColumn<Submission, Integer > SubmissionId;
     @FXML
     private TableColumn<Submission, String > SubmissionTime;
     @FXML
@@ -53,7 +53,7 @@ public class StatusFXMLController implements Initializable {
         System.out.println("Table View ini");
         
         
-        SubmissionId.setCellValueFactory(new PropertyValueFactory<Submission,String>("Id"));
+        SubmissionId.setCellValueFactory(new PropertyValueFactory<Submission,Integer>("Id"));
         
         SubmissionTime.setCellValueFactory(new PropertyValueFactory<Submission,String>("Time"));
         
@@ -69,7 +69,12 @@ public class StatusFXMLController implements Initializable {
         
         MemoryTaken.setCellValueFactory(new PropertyValueFactory<Submission,String>("MemoryTaken"));
         
-        SubmissionSet.LoadSubmissionSet();
+        
+        
+        for(Submission s:SubmissionSet.Submissions.values())
+        {
+            System.out.println(s);
+        }
         
         StatusTable.getItems().removeAll(StatusTable.getItems());
         StatusTable.getItems().addAll(SubmissionSet.Submissions.values());

@@ -10,16 +10,11 @@ import OnlineJudge.*;
 import OnlineJudge.Submission.Submission;
 import OnlineJudge.Submission.SubmissionSet;
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

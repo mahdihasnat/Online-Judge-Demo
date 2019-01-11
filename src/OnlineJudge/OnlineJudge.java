@@ -52,7 +52,8 @@ public class OnlineJudge  extends Application  {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        ProblemSet.LoadProblemSet();
+        SubmissionSet.LoadSubmissionSet();
         launch(args);
         
     }

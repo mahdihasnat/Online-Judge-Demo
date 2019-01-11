@@ -5,6 +5,7 @@
  */
 package OnlineJudge.Submission;
 
+import OnlineJudge.ProblemSet.ProblemSet;
 import java.time.LocalDateTime;
 
 /**
@@ -25,7 +26,7 @@ public class Submission {
     public String ProblemName;
     public Submission(String ProbmemId, String Handle, String Lang, String Code) {
         this.ProbmemId = ProbmemId;
-        this.ProblemName="in submission";
+        this.ProblemName=ProblemSet.Problems.get(ProbmemId).getName();
         this.Handle = Handle;
         this.Language = Lang;
         this.Code = Code;
@@ -75,6 +76,11 @@ public class Submission {
 
     public String getProblemName() {
         return ProblemName;
+    }
+
+    @Override
+    public String toString() {
+        return "Submission{" + "ProbmemId=" + ProbmemId + ", Handle=" + Handle + ", Language=" + Language + ", Code=" + Code + ", Verdict=" + Verdict + ", Time=" + Time + ", TimeTaken=" + TimeTaken + ", MemoryTaken=" + MemoryTaken + ", Id=" + Id + ", ProblemName=" + ProblemName + '}';
     }
     
     
