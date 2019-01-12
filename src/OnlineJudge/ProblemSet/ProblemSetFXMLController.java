@@ -42,7 +42,7 @@ public class ProblemSetFXMLController implements Initializable {
         System.out.println("Table View ini");
         //ProblemsTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         ObservableList<Problem> data = FXCollections.observableArrayList();
-        ProblemSet.LoadProblemSet();
+        //ProblemSet.LoadProblemSet();
         data.addAll(ProblemSet.Problems.values());
         
         ProblemId.setCellValueFactory(new PropertyValueFactory<Problem,String>("Id"));

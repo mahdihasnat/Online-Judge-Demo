@@ -109,11 +109,9 @@ public class SubmitFXMLController implements Initializable {
         }
         System.out.println("Submit success");
         ErrorMessage.setText("Submission successful");
-        Submission ns= new Submission(ProblemIdMessage.isVisible()?ProblemName.getText():ProblemShowFXMLController.problem.getId(),LocalUser.user.Handle,SelectLanguageButton.getText(),SourceCode.getText());
-        SubmissionSet.Submissions.put(Submission.MaxId, ns);
-        SubmissionSet.SaveSubmissionSet();
+        Submission ns= new Submission(ProblemIdMessage.isVisible()?ProblemName.getText():ProblemShowFXMLController.problem.getId(),LocalUser.user.Handle,SelectLanguageButton.getText(),SourceCode.getText(),SubmissionSet.TotalSubmissions);
+        SubmissionSet.Submissions.put(SubmissionSet.TotalSubmissions++, ns);
         
-        /// run this submission
     }
     private String ReadFromFile(File f) 
     {

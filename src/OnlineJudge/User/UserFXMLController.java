@@ -6,8 +6,11 @@
 package OnlineJudge.User;
 
 import OnlineJudge.OnlineJudge;
+import OnlineJudge.Submission.Submission;
+import OnlineJudge.Submission.SubmissionSet;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,12 +47,7 @@ public class UserFXMLController implements Initializable {
     private void HomeButtonClicked(ActionEvent event) throws IOException {
         try
         {
-            Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/OnlineJudgeFXML.fxml"));
-            Node.getChildren().removeAll(Node.getChildren());
-            Node.getChildren().add(root);
-            //Scene scene = new Scene(root,720,600);
-        
-            //OnlineJudge.PrimaryStage.setScene(scene);
+            
         }
         catch(Exception e)
         {

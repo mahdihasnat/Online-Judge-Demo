@@ -6,14 +6,14 @@
 package OnlineJudge.Submission;
 
 import OnlineJudge.ProblemSet.ProblemSet;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  *
  * @author MAHDI
  */
-public class Submission {
-    public static Integer MaxId=0;
+public class Submission implements Serializable {
     public String ProbmemId;
     public String Handle;
     public String Language;
@@ -24,7 +24,7 @@ public class Submission {
     public String MemoryTaken;
     public Integer Id;
     public String ProblemName;
-    public Submission(String ProbmemId, String Handle, String Lang, String Code) {
+    public Submission(String ProbmemId, String Handle, String Lang, String Code,Integer Id) {
         this.ProbmemId = ProbmemId;
         this.ProblemName=ProblemSet.Problems.get(ProbmemId).getName();
         this.Handle = Handle;
@@ -34,8 +34,7 @@ public class Submission {
         Verdict= "Not Judged Yet";
         TimeTaken="";
         MemoryTaken="";
-        this.Id=MaxId;
-        MaxId++;
+        this.Id=Id;
     }
 
     public String getProbmemId() {

@@ -5,7 +5,7 @@
  */
 package OnlineJudge.Submission;
 
-import static OnlineJudge.ProblemSet.ProblemSet.Problems;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -18,16 +18,16 @@ import java.util.HashMap;
  * @author MAHDI
  */
 public class SubmissionSet {
-    public static HashMap< Integer, Submission> Submissions = new HashMap< Integer, Submission>();
+    public static HashMap< Integer , Submission> Submissions = new HashMap< Integer, Submission>();
     static final File path=new File("SubmissionSet");
     static final String FileSeparator=System.getProperty("file.separator");
-    
+    public static Integer TotalSubmissions = new Integer(0);
     public static void SaveSubmissionSet() {
         try {
             System.out.println("save Submission");
             if (!path.exists()) {
                 if (!path.mkdirs()) {
-                    System.out.println("Submission dir not created");
+                    System.out.println("Submissionse dir not created");
                 }
             }
             File Dest = new File(path.getAbsolutePath()+FileSeparator+"Submissions.dat");
@@ -44,10 +44,10 @@ public class SubmissionSet {
     public static void LoadSubmissionSet()
     {
         try {
-            System.out.println("load SubmissionSet");
+            System.out.println("load Submission");
             if (!path.exists()) {
                 if (!path.mkdirs()) {
-                    System.out.println("SubmissionSet dir not created");
+                    System.out.println("Submissionse dir not created");
                 }
             }
             File Dest = new File(path.getAbsolutePath()+FileSeparator+"Submissions.dat");

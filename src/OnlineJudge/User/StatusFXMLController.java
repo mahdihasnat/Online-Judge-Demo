@@ -7,6 +7,7 @@ package OnlineJudge.User;
 
 import OnlineJudge.OnlineJudge;
 import OnlineJudge.ProblemSet.Problem;
+import OnlineJudge.ProblemSet.ProblemSet;
 import OnlineJudge.Submission.Submission;
 import OnlineJudge.Submission.SubmissionSet;
 import java.net.URL;
@@ -69,15 +70,19 @@ public class StatusFXMLController implements Initializable {
         
         MemoryTaken.setCellValueFactory(new PropertyValueFactory<Submission,String>("MemoryTaken"));
         
-        
+        /*
         
         for(Submission s:SubmissionSet.Submissions.values())
         {
             System.out.println(s);
         }
+*/        
+        ObservableList<Submission > data = FXCollections.observableArrayList();
+        //ProblemSet.LoadProblemSet();
+        data.addAll(SubmissionSet.Submissions.values());
         
-        StatusTable.getItems().removeAll(StatusTable.getItems());
-        StatusTable.getItems().addAll(SubmissionSet.Submissions.values());
+        //StatusTable.getItems().removeAll(StatusTable.getItems());
+        StatusTable.setItems(data);
         
         
     }    
