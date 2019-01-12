@@ -5,6 +5,7 @@
  */
 package OnlineJudge.Submission;
 
+import static OnlineJudge.ProblemSet.ProblemSet.Problems;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -23,10 +24,10 @@ public class SubmissionSet {
     
     public static void SaveSubmissionSet() {
         try {
-            System.out.println("SubmissionSet save");
+            System.out.println("save Submission");
             if (!path.exists()) {
                 if (!path.mkdirs()) {
-                    System.out.println("SubmissionSet dir not created");
+                    System.out.println("Submission dir not created");
                 }
             }
             File Dest = new File(path.getAbsolutePath()+FileSeparator+"Submissions.dat");
