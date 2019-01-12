@@ -16,7 +16,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
@@ -35,7 +37,16 @@ public class OnlineJudge  extends Application  {
         Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/OnlineJudgeFXML.fxml"));
         
         Scene scene = new Scene(root,720,600);
+        try {
         
+        Image img= new Image("file:icon.png");
+        stage.getIcons().add(img);
+        
+        }
+        catch ( Exception e)
+        {
+            System.out.println(e.getCause());
+        }
         stage.setScene(scene);
         stage.show();
         PrimaryStage=stage;
