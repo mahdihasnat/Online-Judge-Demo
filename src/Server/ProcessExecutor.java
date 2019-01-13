@@ -11,7 +11,7 @@ import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import OnlineJudge.ProblemSet.*;
-import 
+
 /**
  *
  * @author Student06
@@ -94,7 +94,7 @@ public class ProcessExecutor {
                 submission.Verdict="Judging ... ... ...";
                 for(int i=0;i<problem.Inputs.size();i++)
                 {
-                    Runtime rt=Runtime.getRuntime()
+                    //Runtime rt=Runtime.getRuntime()
                     
                     //string verdic=ExecuteOne()
                 }
