@@ -78,21 +78,22 @@ public class RegisterFXMLController implements Initializable {
             PromptLavel.setText("Enter Valid Password");
             return ;
         }
-        else if((OnlineJudge.getUser.containsKey(Handle.getText())))
+        else if((UserSet.Users.containsKey(Handle.getText())))
         {
            PromptLavel.setText("Try Another Handle");
         }
         else
         {
             PromptLavel.setText("Registration Success");
-            OnlineJudge.getUser.put(Handle.getText(), new User(Name.getText(), Handle.getText(), Email.getText(), Country.getText(), University.getText(), Password.getText()));
+            UserSet.Users.put(Handle.getText(), new User(Name.getText(), Handle.getText(), Email.getText(), Country.getText(), University.getText(), Password.getText()));
         }
     }
 
     @FXML
     private void LogInButtonCreated(ActionEvent event) {
         System.out.println("Log In Button pressed");
-        try {
+        try 
+        {
             Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/User/LogInFXML.fxml"));
 
             Scene scene = new Scene(root, 720, 600);

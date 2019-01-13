@@ -5,9 +5,6 @@
  */
 package OnlineJudge.User;
 
-import OnlineJudge.OnlineJudge;
-import OnlineJudge.ProblemSet.Problem;
-import OnlineJudge.ProblemSet.ProblemSet;
 import OnlineJudge.Submission.Submission;
 import OnlineJudge.Submission.SubmissionSet;
 import java.net.URL;

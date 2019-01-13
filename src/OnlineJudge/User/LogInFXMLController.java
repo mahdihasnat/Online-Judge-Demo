@@ -97,9 +97,9 @@ public class LogInFXMLController extends AnchorPane implements Initializable {
         }
             
         
-        if (OnlineJudge.getUser.containsKey(Handle.getText())) {
-            if (Password.getText().equals(OnlineJudge.getUser.get(Handle.getText()).Password)) {
-                LocalUser.user = OnlineJudge.getUser.get(Handle.getText());
+        if (UserSet.Users.containsKey(Handle.getText())) {
+            if (Password.getText().equals(UserSet.Users.get(Handle.getText()).Password)) {
+                LocalUser.user = UserSet.Users.get(Handle.getText());
                 System.out.println("Log in successful");
                 try {
                     Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/User/UserFXML.fxml"));

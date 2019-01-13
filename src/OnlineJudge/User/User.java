@@ -5,11 +5,13 @@
  */
 package OnlineJudge.User;
 
+import java.io.Serializable;
+
 /**
  *
  * @author MAHDI
  */
-public class User {
+public class User implements Serializable{
     String Name;
     String Handle;
     String Email;

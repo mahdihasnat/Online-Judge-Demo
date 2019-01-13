@@ -68,7 +68,5 @@
     </HBox>
       <Button fx:id="RegisterButton" layoutX="40.0" layoutY="472.0" mnemonicParsing="false" onAction="#RegisterButtonClicked" prefHeight="50.0" prefWidth="638.0" text="Register" />
   </children>
-  <stylesheets>
-    <URL value="@Login.css" />
-  </stylesheets>
+  
 </AnchorPane>
