@@ -34,6 +34,8 @@ public class SubmissionSet {
             FileOutputStream fos = new FileOutputStream(Dest);
             ObjectOutputStream ous = new ObjectOutputStream(fos);
             ous.writeObject(Submissions);
+            ous.writeObject(TotalSubmissions);
+            
             ous.close();
             fos.close();
         } catch (Exception e) {
@@ -55,6 +57,7 @@ public class SubmissionSet {
             FileInputStream fis = new FileInputStream(Dest);
             ObjectInputStream ois = new ObjectInputStream(fis);
             Submissions= (HashMap< Integer, Submission>)ois.readObject();
+            TotalSubmissions=(Integer)ois.readObject();
             ois.close();
             fis.close();
         } catch (Exception e) {

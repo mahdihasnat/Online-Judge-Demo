@@ -7,6 +7,7 @@ package OnlineJudge.User;
 
 import OnlineJudge.ProblemSet.ProblemShowFXMLController;
 import OnlineJudge.*;
+import OnlineJudge.ProblemSet.ProblemSet;
 import OnlineJudge.Submission.Submission;
 import OnlineJudge.Submission.SubmissionSet;
 import java.io.BufferedInputStream;
@@ -109,8 +110,14 @@ public class SubmitFXMLController implements Initializable {
         }
         System.out.println("Submit success");
         ErrorMessage.setText("Submission successful");
+        if(!ProblemIdMessage.isVisible()||ProblemSet.Problems.containsKey(ProblemName.getText())) {
         Submission ns= new Submission(ProblemIdMessage.isVisible()?ProblemName.getText():ProblemShowFXMLController.problem.getId(),LocalUser.user.Handle,SelectLanguageButton.getText(),SourceCode.getText(),SubmissionSet.TotalSubmissions);
-        SubmissionSet.Submissions.put(SubmissionSet.TotalSubmissions++, ns);
+        SubmissionSet.Submissions.put(SubmissionSet.TotalSubmissions, ns);
+        }
+        else 
+        {
+            System.out.println("no problem found");
+        }
         
     }
     private String ReadFromFile(File f) 
