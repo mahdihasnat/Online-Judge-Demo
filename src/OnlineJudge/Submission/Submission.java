@@ -25,6 +25,7 @@ public class Submission implements Serializable {
     public String MemoryTaken;
     public Integer Id;
     public String ProblemName;
+    public String Error;
     public Submission(String ProbmemId, String Handle, String Lang, String Code,Integer Id) {
         this.ProbmemId = ProbmemId;
         
