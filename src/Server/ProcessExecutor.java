@@ -11,75 +11,13 @@ import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import OnlineJudge.ProblemSet.*;
+import static java.lang.Long.max;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
  * @author Student06
  */
-
-
-
-
-class StreamGobbler implements Runnable {
-    InputStream is;
-    String type;
-    OutputStream os;
-    Thread t;
-    String str;
-    String error;
-
-    StreamGobbler(InputStream is, String type) {
-    	this.is = is;
-        this.type = type;
-        this.os = null;
-    	t=new Thread(this);
-    } 
-
-    StreamGobbler(InputStream is, String type, OutputStream redirect) {
-        this.is = is;
-        this.type = type;
-        this.os = redirect;
-        t = new Thread(this);
-    }
-    
-    StreamGobbler(OutputStream os,String type, InputStream redirect) {
-        this.os = os;
-        this.type = type;
-        this.is = redirect;
-        t = new Thread(this);
-    }
-    
-    public void start() {
-    	t.start();
-    }
-
-
-    public void run() {
-        try {
-            PrintWriter pw = null;
-            if (os != null) pw = new PrintWriter(os);
-            InputStreamReader isr = new InputStreamReader(is);
-            BufferedReader br = new BufferedReader(isr);
-            String line;
-            while ( (line = br.readLine()) != null)
-            {
-                if (pw != null) pw.println(line);
-                System.out.println(type + ">" + line);
-            }
-            if (pw != null) pw.flush();
-        } catch (Exception ioe) {
-            ioe.printStackTrace();
-        }
-    }
-}
-
-
-
-
-
-
-
-
 public class ProcessExecutor {
 
     int ExitValue;
@@ -87,21 +25,38 @@ public class ProcessExecutor {
     public ProcessExecutor(Submission submission) {
         try {
             System.out.println("Exexuting ");
-            if (submission.Language.equalsIgnoreCase("C++")) {
-                WriteFile(submission.Code, "cppcode.cpp");
-                final String CppCommand="g++ cppcode.cpp";
-                Problem problem = ProblemSet.Problems.get(submission.ProbmemId);
-                submission.Verdict="Judging ... ... ...";
-                for(int i=0;i<problem.Inputs.size();i++)
-                {
-                    //Runtime rt=Runtime.getRuntime()
-                    
-                    //string verdic=ExecuteOne()
-                }
-                
-                
-                
+
+            File SourceCode =null;
+            if(submission.Language.equalsIgnoreCase("C++")) 
+                SourceCode=new File("SourceCode.cpp");
+            else 
+                SourceCode = new File("Solution.java");
+            if (SourceCode.exists()) {
+                SourceCode.delete();
             }
+            SourceCode.createNewFile();
+            WriteFile(submission.Code, SourceCode.getName());
+
+            File Output = new File("Output.txt");
+            if (Output.exists()) {
+                Output.delete();
+            }
+            Output.createNewFile();
+
+            Problem problem = ProblemSet.Problems.get(submission.ProbmemId);
+            submission.Verdict = "Judging ... ... ...";
+            String Verdict = "";
+            for (int i = 0; i < problem.Inputs.size(); i++) {
+                submission.Verdict = "Running on test " + i;
+                Verdict = ExecuteOneCpp(SourceCode, problem.Inputs.get(i), problem.Outputs.get(i), Output, submission.Comment, problem.TimeLimit, submission.TimeTaken, submission.Language);
+                if (!Verdict.equalsIgnoreCase("Accepted")) {
+                    break;
+                }
+            }
+            submission.Verdict = Verdict;
+
+            System.out.println(submission);
+
         } catch (Exception ex) {
             System.out.println(ex.getCause());
             Logger.getLogger(ProcessExecutor.class.getName()).log(Level.SEVERE, null, ex);
@@ -116,18 +71,17 @@ public class ProcessExecutor {
         out.println(Code);
         out.close();
     }
-    static private String ReadFile(File f) 
-    {
-        String src="";
+
+    static private String ReadFile(File f) {
+        String src = "";
         try {
-            FileInputStream fis=new FileInputStream(f);
-            BufferedInputStream bir= new BufferedInputStream(fis);
-            int c=1;
-            while((c=bir.read())!=-1)
-            {
-                
-                System.out.print((char)c);
-                src+=Character.toString((char)c);
+            FileInputStream fis = new FileInputStream(f);
+            BufferedInputStream bir = new BufferedInputStream(fis);
+            int c = 1;
+            while ((c = bir.read()) != -1) {
+
+                System.out.print((char) c);
+                src += Character.toString((char) c);
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -135,46 +89,102 @@ public class ProcessExecutor {
         }
         return src;
     }
-    static String ExecuteOneCpp(File SourceCode,File Input,File Output,File ReirectOutput,String Error) throws FileNotFoundException, IOException
-    {
+
+    static String ExecuteOneCpp(File SourceCode, File Input, File Output, File ReirectOutput, String Error, Integer TimeLimit, String TimeTaken, String Language) throws FileNotFoundException, IOException, InterruptedException {
+
+        ProcessBuilder cmd = new ProcessBuilder("cmd");
+
+        // take all commands as input in a text file 
+        File CmdCpp = new File("Cmd.txt");
+        if (!CmdCpp.exists()) {
+            CmdCpp.createNewFile();
+        }
+        System.out.println("Compiling " + SourceCode.getName());
+        if (Language.equalsIgnoreCase("C++")) {
+            WriteFile("g++ " + SourceCode.getName(), CmdCpp.getName());
+        } else {
+            WriteFile("javac " + SourceCode.getName(), CmdCpp.getName());
+        }
+        File CmdError = new File("CmdError.txt");
+        File CmdOutput = new File("CmdOutput.txt");
+
+        // redirect all the files 
+        cmd.redirectInput(CmdCpp);
+        cmd.redirectOutput(CmdOutput);
+        cmd.redirectError(CmdError);
+
+        File exe = new File("");
+
+        if (Language.equalsIgnoreCase("C++")) {
+            exe = new File("a.exe");
+        } else {
+            exe = new File("Solution.class");
+        }
+
+        if (exe.exists()) {
+            exe.delete();
+        }
+        // start the process 
+        System.out.println("Compiling ");
+        Process pc = cmd.start();
+        int res = pc.waitFor();
+        System.out.println("Compilation ok");
+
+        if (!exe.exists()) {
+            Error = ReadFile(CmdError);
+            return "Compilation Error";
+        }
+
+        ProcessBuilder pb = null;
+        if (Language.equalsIgnoreCase("C++")) {
+            pb = new ProcessBuilder("a.exe");
+        } else {
+            
+            pb = new ProcessBuilder("cmd");
+            File Temp = new File("JavaInput.txt");
+            
+        }
+
+        /// pb-> c++ programme
+        pb.redirectInput(Input);
+        pb.redirectOutput(ReirectOutput);
+        pb.redirectError(CmdError);
+
+        long StartTime = System.nanoTime();
+        Process pce = pb.start();
         
-            ProcessBuilder cmd = new ProcessBuilder("cmd"); 
-  
-            // take all commands as input in a text file 
-            File CmdCpp = new File("CmdCpp.txt"); 
-            if(!CmdCpp.exists()) CmdCpp.createNewFile();
-            System.out.println("Compiling "+SourceCode.getName());
-            WriteFile("g++ "+SourceCode.getName(),CmdCpp.getName());
-            
-            File CmdError = new File("CmdError.txt"); 
-            File CmdOutput = new File("CmdOutput.txt"); 
- 
-            // redirect all the files 
-            cmd.redirectInput(CmdCpp); 
-            cmd.redirectOutput(CmdOutput); 
-            cmd.redirectError(CmdError);
-            File exe = new File("a.exe");
-            if(exe.exists()) exe.delete();
-            // start the process 
-            Process pc= cmd.start();
-            
-            if(!exe.exists())
-            {
-                Error=ReadFile(CmdError);
-                return "Compilation Error";
-            }
-                    
-            ProcessBuilder pb= new ProcessBuilder("a.exe");
-            
-            pb.redirectInput(Input); 
-            pb.redirectOutput(ReirectOutput); 
-            pb.redirectError(CmdError);
-            
-            
-            Process pce = pb.start();
-            
-            System.out.println("Exit execxute ones");
-            return "Accepted";
+        boolean finished = pce.waitFor(TimeLimit, TimeUnit.MILLISECONDS);
+        System.out.println("programme Finished : " + finished);
+        int timelimite = 0;
+        if (!finished) {
+            timelimite = 1;
+            pce.destroy();
+        }
+
+        if (TimeTaken.equals("")) {
+            TimeTaken = "0";
+        }
+        long StopTime = System.nanoTime();
+        long TimeElapsed = StopTime - StartTime;
+        System.out.println("Time taken " + TimeElapsed);
+        Long timeTaken = max(Long.parseLong(TimeTaken) * 1000000, TimeElapsed);
+        timeTaken = timeTaken / 1000000;
+        TimeTaken = String.valueOf(timeTaken);
+        int ExitValue = pce.exitValue();
+        System.out.println("Exit value " + ExitValue);
+        String Verdict = "";
+        if (ReadFile(Output).equals(ReadFile(ReirectOutput))) {
+            Verdict = "Accepted";
+        } else if (timelimite == 1) {
+            Verdict = "Time Limit Exceeded";
+        } else if (ExitValue != 0) {
+            Verdict = "Runtime error";
+            Error = ReadFile(CmdError);
+        } else {
+            Verdict = "Wrong Answer";
+        }
+        System.out.println("Exit execxute ones");
+        return Verdict;
     }
 
 }

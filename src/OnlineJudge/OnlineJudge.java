@@ -53,9 +53,16 @@ public class OnlineJudge  extends Application  {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        UserSet.LoadUserSet();
-        ProblemSet.LoadProblemSet();
-        SubmissionSet.LoadSubmissionSet();
+    /*    new Runnable() {
+            @Override
+            public void run() {
+    */            UserSet.LoadUserSet();
+                ProblemSet.LoadProblemSet();
+                SubmissionSet.LoadSubmissionSet();
+                
+    //        }
+    //    }.run();
+        
         launch(args);
         
     }

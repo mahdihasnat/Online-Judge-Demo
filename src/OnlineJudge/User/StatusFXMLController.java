@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -67,20 +68,19 @@ public class StatusFXMLController implements Initializable {
         
         MemoryTaken.setCellValueFactory(new PropertyValueFactory<Submission,String>("MemoryTaken"));
         
-        /*
         
+/*
         for(Submission s:SubmissionSet.Submissions.values())
         {
             System.out.println(s);
         }
-*/        
+*/     
         ObservableList<Submission > data = FXCollections.observableArrayList();
-        //ProblemSet.LoadProblemSet();
+        
         data.addAll(SubmissionSet.Submissions.values());
         
-        //StatusTable.getItems().removeAll(StatusTable.getItems());
         StatusTable.setItems(data);
-        
+        StatusTable.getSortOrder().add(SubmissionId);
         
     }    
     

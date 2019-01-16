@@ -25,7 +25,7 @@ public class Submission implements Serializable {
     public String MemoryTaken;
     public Integer Id;
     public String ProblemName;
-    public String Error;
+    public String Comment;
     public Submission(String ProbmemId, String Handle, String Lang, String Code,Integer Id) {
         this.ProbmemId = ProbmemId;
         
@@ -84,8 +84,8 @@ public class Submission implements Serializable {
 
     @Override
     public String toString() {
-        return "Submission{" + "ProbmemId=" + ProbmemId + ", Handle=" + Handle + ", Language=" + Language + ", Code=" + Code + ", Verdict=" + Verdict + ", Time=" + Time + ", TimeTaken=" + TimeTaken + ", MemoryTaken=" + MemoryTaken + ", Id=" + Id + ", ProblemName=" + ProblemName + '}';
+        return "Submission{" + "ProbmemId=" + ProbmemId + ", Handle=" + Handle + ", Language=" + Language + ", Code=" + Code + ", Verdict=" + Verdict + ", Time=" + Time + ", TimeTaken=" + TimeTaken + ", MemoryTaken=" + MemoryTaken + ", Id=" + Id + ", ProblemName=" + ProblemName + ", Comment=" + Comment + '}';
     }
-    
+
     
 }
