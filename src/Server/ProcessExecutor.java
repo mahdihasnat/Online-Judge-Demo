@@ -141,8 +141,7 @@ public class ProcessExecutor {
         } else {
             
             pb = new ProcessBuilder("cmd");
-            File Temp = new File("JavaInput.txt");
-            
+            File Temp = new File("JavaInput");
         }
 
         /// pb-> c++ programme

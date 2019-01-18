@@ -7,7 +7,9 @@ int main()
     cin>>t;
     while(t--)
     {
-        cin>>a>>b;
+        cin>>a>>b;sdf
+za
+sd
         cout<<a+b<<endl;
     }
 }

@@ -1,0 +1,4 @@
+SourceCode.cpp: In function 'int main()':
+SourceCode.cpp:10:19: error: 'sdf' was not declared in this scope
+         cin>>a>>b;sdf
+                   ^
