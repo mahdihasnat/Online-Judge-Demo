@@ -6,22 +6,15 @@
 package OnlineJudge;
 
 import OnlineJudge.ProblemSet.ProblemSet;
-import OnlineJudge.Submission.Submission;
 import OnlineJudge.Submission.SubmissionSet;
-import OnlineJudge.User.User;
 import OnlineJudge.User.UserSet;
-import java.util.ArrayList;
-import java.util.HashMap;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import javafx.util.Pair;
 
 /**
  *
