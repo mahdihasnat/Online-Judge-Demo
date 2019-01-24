@@ -5,7 +5,6 @@
         <group>
             <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/User/StatusFXMLController.java</file>
             <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/ProblemSet/EditProblemFXMLController.java</file>
-            <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/Server/ProcessExecutor.java</file>
             <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/Admin/Admin.java</file>
             <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/User/StatusFXML.fxml</file>
             <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/ProblemSet/ProblemSetFXMLController.java</file>
@@ -18,8 +17,10 @@
             <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/Submission/SubmissionSet.java</file>
             <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/OnlineJudge.java</file>
             <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/User/UserFXMLController.java</file>
+            <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/User/RegisterFXMLController.java</file>
             <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/Submission/Submission.java</file>
             <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/User/LogInFXMLController.java</file>
+            <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/User/LogInFXML.fxml</file>
             <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/User/SubmitFXMLController.java</file>
             <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/Admin/AdminFXMLController.java</file>
             <file>file:/C:/Users/MAHDI/Documents/GitHub/Online-Judge-Demo/src/OnlineJudge/OnlineJudgeFXMLController.java</file>

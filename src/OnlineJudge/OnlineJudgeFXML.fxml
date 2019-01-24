@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -8,11 +9,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OnlineJudge.OnlineJudgeFXMLController">
    <children>
-      <MenuButton fx:id="Option" layoutX="313.0" layoutY="288.0" mnemonicParsing="false" text="Continue as">
-        <items>
-          <MenuItem fx:id="OptionUser" mnemonicParsing="false" onAction="#OptionUserSelected" text="User" />
-          <MenuItem fx:id="OptionServer" mnemonicParsing="false" onAction="#OptionServerSelected" text="Server" />
-        </items>
-      </MenuButton>
+      <TextField fx:id="ServerIP" layoutX="278.0" layoutY="45.0" promptText="localhost" text="localhost" />
+      <Button layoutX="58.0" layoutY="45.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="187.0" text="Enter Server IP:" />
+      <Button layoutX="522.0" layoutY="45.0" mnemonicParsing="false" onAction="#ConnectServer" prefHeight="31.0" prefWidth="153.0" text="Connect" />
+      <Text fx:id="Message" layoutX="278.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wait please" wrappingWidth="187.0" />
    </children>
 </AnchorPane>
