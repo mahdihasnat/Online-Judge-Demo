@@ -1,6 +1,7 @@
 /* ....Show License.... */
 package OnlineJudge.User;
 
+import OnlineJudge.Network;
 import OnlineJudge.OnlineJudge;
 import Server.LoginRequest;
 import java.io.IOException;
@@ -75,14 +76,15 @@ public class LogInFXMLController extends AnchorPane implements Initializable {
     @FXML
     private void LogInButtonClicked(ActionEvent event) {
         try {
+            System.out.println("LogInButtonClicked");
             String username= Handle.getText();
             String password= Password.getText();
-            if (Handle.getText().equals("") && Password.getText().equals("")) {
+            if (username.equals("") && password.equals("")) {
                 Password.setText("admin");
                 Handle.setText("admin");
             }
             
-            if (Handle.getText().equals("admin") && Password.getText().equals("admin")) {
+            if (username.equals("admin") && password.equals("admin")) {
                 LocalUser.setAdmin();
                 System.out.println("Log in successful");
                 try {
@@ -96,11 +98,14 @@ public class LogInFXMLController extends AnchorPane implements Initializable {
                     
                 }
             }
+            
             Message.setText("Waiting ... .... ... ");
             
-            LocalUser.getOos().writeObject(new LoginRequest(username, password));
-            LocalUser.getOos().flush();
             
+            //Network.sendObject(LocalUser.getConnection(), new LoginRequest(username, password));
+            LocalUser.getOos().writeObject("123456");
+            LocalUser.getOos().flush();
+            /*
             Object obj=    LocalUser.getOis().readObject();
             if(obj instanceof  Boolean)
             {
@@ -108,15 +113,16 @@ public class LogInFXMLController extends AnchorPane implements Initializable {
                 if(rep)
                 {
                     System.out.println("Log in ok");
-                    
-                    
-                    
+                    Message.setText("Log in success");
                 }
                 else 
                 {
                     Message.setText("Wrong username/password");
                 }
             }
+*/
+           
+             
             
         } catch (Exception ex) {
             Logger.getLogger(LogInFXMLController.class.getName()).log(Level.SEVERE, null, ex);

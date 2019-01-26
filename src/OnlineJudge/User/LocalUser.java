@@ -40,13 +40,18 @@ public class LocalUser {
     }
 
     public static void setConnection(Socket connection) {
+        System.out.println("Setting connection socket open : "+connection.isConnected());
         LocalUser.connection = connection;
         try {
+            connection.setTcpNoDelay(true);
             oos= new ObjectOutputStream(connection.getOutputStream());
             ois= new ObjectInputStream(connection.getInputStream());
         } catch (IOException ex) {
+            System.out.println("error khaise");
             Logger.getLogger(LocalUser.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println("Setting connection socket open : "+connection.isConnected());
+        
     }
 
     public static ObjectOutputStream getOos() {
