@@ -7,7 +7,7 @@ package OnlineJudge;
 
 import OnlineJudge.ProblemSet.ProblemSet;
 import OnlineJudge.Submission.SubmissionSet;
-import OnlineJudge.User.UserSet;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -38,7 +38,7 @@ public class OnlineJudge  extends Application  {
         stage.setOnCloseRequest((event) -> {
             SubmissionSet.SaveSubmissionSet();
             ProblemSet.SaveProblemSet();
-            UserSet.SaveUserSet();
+            
         });
     }
 
@@ -46,15 +46,15 @@ public class OnlineJudge  extends Application  {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-    /*    new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
-    */            UserSet.LoadUserSet();
+                
                 ProblemSet.LoadProblemSet();
                 SubmissionSet.LoadSubmissionSet();
                 
-    //        }
-    //    }.run();
+           }
+        }).start();
         
         launch(args);
         

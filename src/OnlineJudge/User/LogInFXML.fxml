@@ -63,7 +63,7 @@
     <Button id="button1" fx:id="login" defaultButton="true" onAction="#LogInButtonClicked" prefHeight="50.0" prefWidth="420.0" text="Login" AnchorPane.bottomAnchor="141.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
     <HBox id="hBox1" alignment="CENTER" prefHeight="25.0" prefWidth="418.0" AnchorPane.bottomAnchor="201.0" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="41.0">
       <children>
-        <Label id="label2" fx:id="errorMessage" prefHeight="21.0" prefWidth="442.0" textFill="#f50606" />
+        <Label id="label2" fx:id="Message" prefHeight="21.0" prefWidth="442.0" textFill="#f50606" />
       </children>
     </HBox>
       <Button fx:id="RegisterButton" layoutX="40.0" layoutY="472.0" mnemonicParsing="false" onAction="#RegisterButtonClicked" prefHeight="50.0" prefWidth="638.0" text="Register" />

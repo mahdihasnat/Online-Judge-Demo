@@ -6,7 +6,7 @@
 package OnlineJudge.Submission;
 
 import OnlineJudge.ProblemSet.ProblemSet;
-import Server.ProcessExecutor;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -38,8 +38,8 @@ public class Submission implements Serializable {
         TimeTaken="";
         MemoryTaken="";
         this.Id=Id;
-        new ProcessExecutor(this);
         SubmissionSet.TotalSubmissions++;
+        
     }
 
     public String getProbmemId() {

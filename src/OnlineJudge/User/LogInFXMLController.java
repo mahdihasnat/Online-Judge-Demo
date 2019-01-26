@@ -2,8 +2,12 @@
 package OnlineJudge.User;
 
 import OnlineJudge.OnlineJudge;
+import Server.LoginRequest;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,11 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -26,7 +26,7 @@ public class LogInFXMLController extends AnchorPane implements Initializable {
     @FXML
     Button login;
     @FXML
-    Label errorMessage;
+    Label Message;
     @FXML
     private Button BackButon;
     @FXML
@@ -38,7 +38,7 @@ public class LogInFXMLController extends AnchorPane implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        errorMessage.setText("");
+        Message.setText("");
 
     }
 
@@ -74,48 +74,54 @@ public class LogInFXMLController extends AnchorPane implements Initializable {
 
     @FXML
     private void LogInButtonClicked(ActionEvent event) {
-        if(Handle.getText().equals("")&&Password.getText().equals(""))
-        {
-            Password.setText("admin");
-            Handle.setText("admin");
-        }
-        
-        if(Handle.getText().equals("admin")&&Password.getText().equals("admin"))
-        {
+        try {
+            String username= Handle.getText();
+            String password= Password.getText();
+            if (Handle.getText().equals("") && Password.getText().equals("")) {
+                Password.setText("admin");
+                Handle.setText("admin");
+            }
+            
+            if (Handle.getText().equals("admin") && Password.getText().equals("admin")) {
                 LocalUser.setAdmin();
                 System.out.println("Log in successful");
                 try {
                     Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/User/UserFXML.fxml"));
-
+                    
                     Scene scene = new Scene(root, 720, 600);
-
+                    
                     OnlineJudge.PrimaryStage.setScene(scene);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
-
+                    
                 }
-        }
-            
-        
-        if (UserSet.Users.containsKey(Handle.getText())) {
-            if (Password.getText().equals(UserSet.Users.get(Handle.getText()).Password)) {
-                LocalUser.user = UserSet.Users.get(Handle.getText());
-                System.out.println("Log in successful");
-                try {
-                    Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/User/UserFXML.fxml"));
-
-                    Scene scene = new Scene(root, 720, 600);
-
-                    OnlineJudge.PrimaryStage.setScene(scene);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-
-                }
-            } else {
-                errorMessage.setText("Wrong Handle or Password");
             }
-        } else {
-            errorMessage.setText("Wrong Handle or Password");
+            Message.setText("Waiting ... .... ... ");
+            
+            LocalUser.getOos().writeObject(new LoginRequest(username, password));
+            LocalUser.getOos().flush();
+            
+            Object obj=    LocalUser.getOis().readObject();
+            if(obj instanceof  Boolean)
+            {
+                Boolean rep= (Boolean)obj;
+                if(rep)
+                {
+                    System.out.println("Log in ok");
+                    
+                    
+                    
+                }
+                else 
+                {
+                    Message.setText("Wrong username/password");
+                }
+            }
+            
+        } catch (Exception ex) {
+            Logger.getLogger(LogInFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
     }
 }
