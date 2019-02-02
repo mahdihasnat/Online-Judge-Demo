@@ -5,6 +5,7 @@
  */
 package OnlineJudge;
 
+import FileUtil.Folder;
 import OnlineJudge.ProblemSet.Problem;
 import OnlineJudge.ProblemSet.ProblemSet;
 import OnlineJudge.Submission.Submission;
@@ -21,7 +22,7 @@ import java.util.logging.Logger;
  */
 public class Network {
 
-    public static synchronized void sendObject(Socket s, Object obj)  {
+    public static synchronized void sendObject(Socket s, Object obj) {
         ObjectOutputStream oos = null;
         try {
             oos = new ObjectOutputStream(s.getOutputStream());
@@ -29,10 +30,10 @@ public class Network {
             oos.flush();
         } catch (IOException ex) {
             Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }
-    public  static synchronized void sendObject(ObjectOutputStream oos,Object obj)
-    {
+
+    public static synchronized void sendObject(ObjectOutputStream oos, Object obj) {
         try {
             oos.writeObject(obj);
             oos.flush();
@@ -43,12 +44,11 @@ public class Network {
 }
 
 class UpdateFromServer extends Thread {
-
+    private static final File root= new File(new File("1").getAbsoluteFile().getParent());
     private Socket connection;
 
     public UpdateFromServer(Socket connection) {
         this.connection = connection;
-
         start();
     }
 
@@ -59,28 +59,38 @@ class UpdateFromServer extends Thread {
             ObjectInputStream ois = new ObjectInputStream(connection.getInputStream());
             Thread.sleep(1000);
             while (true) {
-                //if(ois.available()>0)
-                {
+                boolean we = (boolean) ois.readObject();
+                if (we) {
                     Object obj = ois.readObject();
                     if (obj == null) {
                         System.out.println("obj is null");
                         continue;
                     }
-                    HashMap<String, Problem> pr = (HashMap<String, Problem>) obj;
-                    HashMap<Integer, Submission> sb = (HashMap<Integer, Submission>) obj;
-                    if (!(pr == null)) {
-                        //System.out.println("Problemset updated");
-                        ProblemSet.setProblems(pr);
+                    ProblemSet.setProblems((HashMap<String, Problem>) obj);
+                    /// prob folder 
+                    
+                    Folder ps =(Folder) ois.readObject();
+                    ps.write(root);
+                    
+                    
+                    
+                    
+                    
+                } else {
+                    Object obj = ois.readObject();
+                    if (obj == null) {
+                        System.out.println("obj is null");
+                        continue;
                     }
-                    if (!(sb == null)) {
-                        //System.out.println("SubmissionSet updated");
-                        SubmissionSet.setSubmissions(sb);
-                    } 
-
+                    SubmissionSet.setSubmissions((HashMap<Integer, Submission>) obj);
+                    
+                    Folder ss =(Folder) ois.readObject();
+                    ss.write(root);
+                    
                 }
                 Thread.sleep(500);
-                //System.out.println("Looping ...");
             }
+
         } catch (Exception e) {
             System.out.println(e.getCause());
             e.printStackTrace();

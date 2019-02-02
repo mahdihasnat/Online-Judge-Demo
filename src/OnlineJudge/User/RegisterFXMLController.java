@@ -84,11 +84,15 @@ public class RegisterFXMLController implements Initializable {
             }
             
             
-            LocalUser.getOos().writeObject(new User(Name.getText(), Handle.getText(), Email.getText(), Country.getText(), University.getText(), Password.getText()));
-            LocalUser.getOos().flush();
-            //LocalUser.getOos().flush();
+            LocalUser.sendServer(new User(Name.getText(), Handle.getText(), Email.getText(), Country.getText(), University.getText(), Password.getText()));
+            
             System.out.println("reg requert sent");
-            /*            Boolean rep=LocalUser.getOis().readBoolean();
+            Boolean rep=null;
+            do
+            {
+                rep = (Boolean) LocalUser.read();
+            }
+            while(rep==null) ;
             if(rep)
             {
                 PromptLavel.setText("Registration Success");
@@ -97,8 +101,9 @@ public class RegisterFXMLController implements Initializable {
             {
                 PromptLavel.setText("Try Another Handle");
             }
-*/
-        } catch (IOException ex) {
+
+        } catch (Exception ex) {
+            System.out.println(ex.getCause());
             Logger.getLogger(RegisterFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

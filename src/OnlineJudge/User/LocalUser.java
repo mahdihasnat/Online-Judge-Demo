@@ -26,7 +26,7 @@ public class LocalUser {
         System.out.println("Admin set");
         user = new User("Admin","admin","Admin@admin.com","BD","BUET","admin");
     }
-
+    
     public static User getUser() {
         return user;
     }
@@ -69,6 +69,23 @@ public class LocalUser {
     public static void setOis(ObjectInputStream ois) {
         LocalUser.ois = ois;
     }
+    public static void sendServer(Object o) {
+        try {
+            oos.writeObject(o);
+            oos.flush();
+        } catch (IOException e) {
+            System.out.println("Writing  Error in network : " + e.toString());
+        }
+    }
     
-    
+    public  static Object read() {
+        Object o = null;
+        try {
+            o = ois.readObject();
+        } catch (Exception e) {
+            System.out.println("Reading Error in network : " + e.toString());
+
+        }
+        return o;
+    }
 }

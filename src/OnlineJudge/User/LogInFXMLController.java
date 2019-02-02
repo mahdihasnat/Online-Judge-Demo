@@ -92,8 +92,13 @@ public class LogInFXMLController extends AnchorPane implements Initializable {
             LocalUser.getOos().writeObject(new LoginRequest(username, password));
             LocalUser.getOos().flush();
             //Network.sendObject(LocalUser.getConnection(), new LoginRequest(username, password));
-            Thread.sleep(500);
-            Boolean rep =  LocalUser.getOis().readBoolean();
+            
+            Boolean rep =null;
+            do
+            {
+                rep= (Boolean) LocalUser.read();
+            }
+            while(rep==null) ;
             if (rep) {
                 System.out.println("Log in ok");
                 Message.setText("Log in success");

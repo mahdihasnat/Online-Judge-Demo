@@ -50,8 +50,6 @@ public class OnlineJudge  extends Application  {
             @Override
             public void run() {
                 
-                ProblemSet.LoadProblemSet();
-                SubmissionSet.LoadSubmissionSet();
                 
            }
         }).start();
