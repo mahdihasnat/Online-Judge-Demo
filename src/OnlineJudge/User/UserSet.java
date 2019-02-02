@@ -5,7 +5,6 @@
  */
 package OnlineJudge.User;
 
-import OnlineJudge.User.User;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

@@ -6,8 +6,11 @@
 package OnlineJudge.User;
 
 import OnlineJudge.OnlineJudge;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,37 +58,48 @@ public class RegisterFXMLController implements Initializable {
 
     @FXML
     private void RegisterAccount(ActionEvent event) {
-        System.out.println("Submit button Clicked");
-        PromptLavel.setText("");
-        if(Name.getText().length()<5) 
-        {
-            PromptLavel.setText("Enter Valid Name");
-            return ;
-               
-        }
-        else if(Handle.getText().length()<5)
-        {
-            PromptLavel.setText("Enter Valid Handle");
-            return ;
-        }
-        else if(Email.getText().indexOf('@')==-1||Email.getText().indexOf('.')==-1)
-        {
-            PromptLavel.setText("Enter Valid Email");
-            return ;
-        }
-        else if(Password.getText().length()<7)
-        {
-            PromptLavel.setText("Enter Valid Password");
-            return ;
-        }
-        else if((UserSet.Users.containsKey(Handle.getText())))
-        {
-           PromptLavel.setText("Try Another Handle");
-        }
-        else
-        {
-            PromptLavel.setText("Registration Success");
-            UserSet.Users.put(Handle.getText(), new User(Name.getText(), Handle.getText(), Email.getText(), Country.getText(), University.getText(), Password.getText()));
+        try {
+            System.out.println("Submit button Clicked");
+            PromptLavel.setText("");
+            if(Name.getText().length()<5)
+            {
+                PromptLavel.setText("Enter Valid Name");
+                return ;
+                
+            }
+            else if(Handle.getText().length()<5)
+            {
+                PromptLavel.setText("Enter Valid Handle");
+                return ;
+            }
+            else if(Email.getText().indexOf('@')==-1||Email.getText().indexOf('.')==-1)
+            {
+                PromptLavel.setText("Enter Valid Email");
+                return ;
+            }
+            else if(Password.getText().length()<7)
+            {
+                PromptLavel.setText("Enter Valid Password");
+                return ;
+            }
+            
+            
+            LocalUser.getOos().writeObject(new User(Name.getText(), Handle.getText(), Email.getText(), Country.getText(), University.getText(), Password.getText()));
+            LocalUser.getOos().flush();
+            //LocalUser.getOos().flush();
+            System.out.println("reg requert sent");
+            /*            Boolean rep=LocalUser.getOis().readBoolean();
+            if(rep)
+            {
+                PromptLavel.setText("Registration Success");
+            }
+            else
+            {
+                PromptLavel.setText("Try Another Handle");
+            }
+*/
+        } catch (IOException ex) {
+            Logger.getLogger(RegisterFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

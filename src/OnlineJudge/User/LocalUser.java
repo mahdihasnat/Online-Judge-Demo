@@ -58,7 +58,7 @@ public class LocalUser {
         return oos;
     }
 
-    public static void setOos(ObjectOutputStream oos) {
+    public static synchronized void setOos(ObjectOutputStream oos) {
         LocalUser.oos = oos;
     }
 

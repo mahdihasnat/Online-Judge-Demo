@@ -77,57 +77,51 @@ public class LogInFXMLController extends AnchorPane implements Initializable {
     private void LogInButtonClicked(ActionEvent event) {
         try {
             System.out.println("LogInButtonClicked");
-            String username= Handle.getText();
-            String password= Password.getText();
-            if (username.equals("") && password.equals("")) {
+            String username = Handle.getText();
+            String password = Password.getText();
+            if (username.equals("") || password.equals("")) {
                 Password.setText("admin");
                 Handle.setText("admin");
+                return ;
             }
+
             
-            if (username.equals("admin") && password.equals("admin")) {
-                LocalUser.setAdmin();
-                System.out.println("Log in successful");
+
+            Message.setText("Waiting ... .... ... ");
+
+            LocalUser.getOos().writeObject(new LoginRequest(username, password));
+            LocalUser.getOos().flush();
+            //Network.sendObject(LocalUser.getConnection(), new LoginRequest(username, password));
+            Thread.sleep(500);
+            Boolean rep =  LocalUser.getOis().readBoolean();
+            if (rep) {
+                System.out.println("Log in ok");
+                Message.setText("Log in success");
+
+                User repuser = (User) LocalUser.getOis().readObject();
+                LocalUser.setUser(repuser);
+
                 try {
                     Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/User/UserFXML.fxml"));
-                    
+
                     Scene scene = new Scene(root, 720, 600);
-                    
+
                     OnlineJudge.PrimaryStage.setScene(scene);
                 } catch (Exception e) {
+                    System.out.println("error khaise");
                     System.out.println(e.getMessage());
-                    
+                    e.printStackTrace();
+
                 }
+
+            } else {
+                Message.setText("Wrong username/password");
+                return;
             }
-            
-            Message.setText("Waiting ... .... ... ");
-            
-            
-            //Network.sendObject(LocalUser.getConnection(), new LoginRequest(username, password));
-            LocalUser.getOos().writeObject("123456");
-            LocalUser.getOos().flush();
-            /*
-            Object obj=    LocalUser.getOis().readObject();
-            if(obj instanceof  Boolean)
-            {
-                Boolean rep= (Boolean)obj;
-                if(rep)
-                {
-                    System.out.println("Log in ok");
-                    Message.setText("Log in success");
-                }
-                else 
-                {
-                    Message.setText("Wrong username/password");
-                }
-            }
-*/
-           
-             
-            
+
         } catch (Exception ex) {
             Logger.getLogger(LogInFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
     }
 }

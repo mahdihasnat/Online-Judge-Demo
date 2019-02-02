@@ -42,6 +42,14 @@ public class ProblemSet extends Application {
         primaryStage.show();
     }
 
+    public static HashMap<String, Problem> getProblems() {
+        return Problems;
+    }
+
+    public static void setProblems(HashMap<String, Problem> Problems) {
+        ProblemSet.Problems = Problems;
+    }
+
     /**
      * @param args the command line arguments
      */

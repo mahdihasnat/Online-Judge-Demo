@@ -43,6 +43,14 @@ public class SubmissionSet {
         }
         
     }
+
+    public static HashMap<Integer, Submission> getSubmissions() {
+        return Submissions;
+    }
+
+    public static void setSubmissions(HashMap<Integer, Submission> Submissions) {
+        SubmissionSet.Submissions = Submissions;
+    }
     public static void LoadSubmissionSet()
     {
         try {

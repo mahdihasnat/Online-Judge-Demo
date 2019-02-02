@@ -5,17 +5,88 @@
  */
 package OnlineJudge;
 
+import OnlineJudge.ProblemSet.Problem;
+import OnlineJudge.ProblemSet.ProblemSet;
+import OnlineJudge.Submission.Submission;
+import OnlineJudge.Submission.SubmissionSet;
 import java.net.*;
 import java.io.*;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author MAHDI
  */
 public class Network {
-    public static void sendObject(Socket s,Object obj) throws IOException
-    {
-        ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
-        oos.writeObject(obj);
-        oos.flush();
+
+    public static synchronized void sendObject(Socket s, Object obj)  {
+        ObjectOutputStream oos = null;
+        try {
+            oos = new ObjectOutputStream(s.getOutputStream());
+            oos.writeObject(obj);
+            oos.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
+    public  static synchronized void sendObject(ObjectOutputStream oos,Object obj)
+    {
+        try {
+            oos.writeObject(obj);
+            oos.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
+
+class UpdateFromServer extends Thread {
+
+    private Socket connection;
+
+    public UpdateFromServer(Socket connection) {
+        this.connection = connection;
+
+        start();
+    }
+
+    @Override
+    public void run() {
+        System.out.println("UpdateFromServer started port:" + connection.getLocalPort());
+        try {
+            ObjectInputStream ois = new ObjectInputStream(connection.getInputStream());
+            Thread.sleep(1000);
+            while (true) {
+                //if(ois.available()>0)
+                {
+                    Object obj = ois.readObject();
+                    if (obj == null) {
+                        System.out.println("obj is null");
+                        continue;
+                    }
+                    HashMap<String, Problem> pr = (HashMap<String, Problem>) obj;
+                    HashMap<Integer, Submission> sb = (HashMap<Integer, Submission>) obj;
+                    if (!(pr == null)) {
+                        //System.out.println("Problemset updated");
+                        ProblemSet.setProblems(pr);
+                    }
+                    if (!(sb == null)) {
+                        //System.out.println("SubmissionSet updated");
+                        SubmissionSet.setSubmissions(sb);
+                    } 
+
+                }
+                Thread.sleep(500);
+                //System.out.println("Looping ...");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            e.printStackTrace();
+        } finally {
+            System.out.println("UpdateFromServer stoped");
+        }
+    }
+
 }

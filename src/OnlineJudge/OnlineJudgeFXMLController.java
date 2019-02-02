@@ -6,6 +6,7 @@
 package OnlineJudge;
 
 import OnlineJudge.User.LocalUser;
+import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -45,32 +46,6 @@ public class OnlineJudgeFXMLController implements Initializable {
         // TODO
     }
 
-    private void OptionUserSelected(ActionEvent event) throws IOException {
-        System.out.println("User selected");
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/User/LogInFXML.fxml"));
-
-            Scene scene = new Scene(root, 720, 600);
-
-            OnlineJudge.PrimaryStage.setScene(scene);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-
-        }
-    }
-
-    private void OptionServerSelected(ActionEvent event) {
-        System.out.println("Server selected");
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/Admin/AdminFXML.fxml"));
-            System.out.println("FXML loaded");
-            OnlineJudge.PrimaryStage.setScene(new Scene(root));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-
-        }
-    }
-
     public static boolean validateIP(String ipStr) {
         String regex = "\\b((25[0–5]|2[0–4]\\d|[01]?\\d\\d?)(\\.)){3}(25[0–5]|2[0–4]\\d|[01]?\\d\\d?)\\b";
         return Pattern.matches(regex, ipStr);
@@ -79,13 +54,15 @@ public class OnlineJudgeFXMLController implements Initializable {
     @FXML
     private void ConnectServer(ActionEvent event) {
         String ServerIp = ServerIP.getText();
-        if (validateIP(ServerIp)||ServerIp.equals("localhost")) {
+        if (validateIP(ServerIp) || ServerIp.equals("localhost")) {
             Message.setText("Connecting .. .. ..");
             try {
-                Socket sc = new Socket(ServerIp, 12345);
-                LocalUser.setConnection( sc) ;
-
-                System.out.println("server connected");
+                Socket sc = new Socket(ServerIp, 11111);
+                Socket sc2 = new Socket(ServerIp, 22222);
+                new UpdateFromServer(sc2);
+                LocalUser.setConnection(sc);
+                sc.setTcpNoDelay(true);
+                sc2.setTcpNoDelay(true);
 
                 try {
                     Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/User/LogInFXML.fxml"));
