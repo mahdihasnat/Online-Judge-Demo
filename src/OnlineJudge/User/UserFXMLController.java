@@ -68,7 +68,7 @@ public class UserFXMLController implements Initializable {
 
     @FXML
     private void ProblemsetButtonClicked(ActionEvent event) {
-        System.out.println("Problemset button clicked");
+        //System.out.println("Problemset button clicked");
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/ProblemSet/ProblemSetFXML.fxml"));
@@ -88,7 +88,7 @@ public class UserFXMLController implements Initializable {
 
     @FXML
     private void SubmitSolutionButtonClicked(ActionEvent event) {
-        System.out.println("Submit button clicked");
+        //System.out.println("Submit button clicked");
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/User/SubmitFXML.fxml"));
@@ -105,7 +105,7 @@ public class UserFXMLController implements Initializable {
 
     @FXML
     private void StatusButtonClicked(ActionEvent event) {
-        System.out.println("Status button clicked");
+        //System.out.println("Status button clicked");
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/User/StatusFXML.fxml"));
@@ -144,7 +144,7 @@ public class UserFXMLController implements Initializable {
     @FXML
     private void LogOutButtonClicked(ActionEvent event) {
         
-        System.out.println("LogOut button clicked");
+        //System.out.println("LogOut button clicked");
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/OnlineJudgeFXML.fxml"));

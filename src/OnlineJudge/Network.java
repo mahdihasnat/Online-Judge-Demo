@@ -88,7 +88,7 @@ class UpdateFromServer extends Thread {
                     ss.write(root);
                     
                 }
-                Thread.sleep(500);
+                
             }
 
         } catch (Exception e) {
