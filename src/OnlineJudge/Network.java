@@ -57,7 +57,7 @@ class UpdateFromServer extends Thread {
         System.out.println("UpdateFromServer started port:" + connection.getLocalPort());
         try {
             ObjectInputStream ois = new ObjectInputStream(connection.getInputStream());
-            Thread.sleep(1000);
+            ObjectOutputStream oos= new ObjectOutputStream(connection.getOutputStream());
             while (true) {
                 boolean we = (boolean) ois.readObject();
                 if (we) {
@@ -82,11 +82,17 @@ class UpdateFromServer extends Thread {
                         System.out.println("obj is null");
                         continue;
                     }
+                    System.out.println("total= "+((HashMap<Integer, Submission>) obj).size());
                     SubmissionSet.setSubmissions((HashMap<Integer, Submission>) obj);
                     
                     Folder ss =(Folder) ois.readObject();
                     ss.write(root);
                     
+                    
+                    //System.out.println("submission updated");
+                    
+                    oos.writeObject(true);
+                    oos.flush();
                 }
                 
             }

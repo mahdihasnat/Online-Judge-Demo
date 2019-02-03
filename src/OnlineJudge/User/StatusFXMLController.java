@@ -69,15 +69,13 @@ public class StatusFXMLController implements Initializable {
         MemoryTaken.setCellValueFactory(new PropertyValueFactory<Submission,String>("MemoryTaken"));
         
         
-/*
-        for(Submission s:SubmissionSet.Submissions.values())
-        {
-            System.out.println(s);
-        }
-*/     
+
+        System.out.println(" total submissions = "+SubmissionSet.getSubmissions().size());
+        
+    
         ObservableList<Submission > data = FXCollections.observableArrayList();
         
-        data.addAll(SubmissionSet.Submissions.values());
+        data.addAll(SubmissionSet.getSubmissions().values());
         
         StatusTable.setItems(data);
         StatusTable.getSortOrder().add(SubmissionId);

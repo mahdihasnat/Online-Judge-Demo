@@ -1,4 +1,2 @@
-SourceCode.cpp: In function 'int main()':
-SourceCode.cpp:10:19: error: 'sdf' was not declared in this scope
-         cin>>a>>b;sdf
-                   ^
+'g++' is not recognized as an internal or external command,
+operable program or batch file.
