@@ -39,7 +39,7 @@ public class UserFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         OnlineJudge.Nodes=Node;
-        UserName.setText(LocalUser.user.Name);
+        UserName.setText(LocalUser.user.getName());
         // TODO
     }    
 
@@ -68,7 +68,6 @@ public class UserFXMLController implements Initializable {
 
     @FXML
     private void ProblemsetButtonClicked(ActionEvent event) {
-        //System.out.println("Problemset button clicked");
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/ProblemSet/ProblemSetFXML.fxml"));
