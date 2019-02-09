@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class LocalUser {
     private static Socket connection;
-    public static User user;
+    private static User user;
     private static ObjectOutputStream oos;
     private static ObjectInputStream ois;
     public static void setAdmin()
