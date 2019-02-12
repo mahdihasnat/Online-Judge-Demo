@@ -44,7 +44,8 @@ public class Network {
 }
 
 class UpdateFromServer extends Thread {
-    private static final File root= new File(new File("1").getAbsoluteFile().getParent());
+
+    private static final File root = new File(new File("1").getAbsoluteFile().getParent());
     private Socket connection;
 
     public UpdateFromServer(Socket connection) {
@@ -57,8 +58,8 @@ class UpdateFromServer extends Thread {
         System.out.println("UpdateFromServer started port:" + connection.getLocalPort());
         try {
             ObjectInputStream ois = new ObjectInputStream(connection.getInputStream());
-            ObjectOutputStream oos= new ObjectOutputStream(connection.getOutputStream());
-            
+            ObjectOutputStream oos = new ObjectOutputStream(connection.getOutputStream());
+
             while (true) {
                 boolean we = (boolean) ois.readObject();
                 if (we) {
@@ -69,33 +70,37 @@ class UpdateFromServer extends Thread {
                     }
                     ProblemSet.setProblems((HashMap<String, Problem>) obj);
                     /// prob folder 
-                    
-                    Folder ps =(Folder) ois.readObject();
-                    ps.write(root);
-                    
-                    
-                    
-                    
-                    
+
+                    Folder ps = (Folder) ois.readObject();
+                    try {
+                        ps.write(root);
+                    } catch (Exception e) {
+                        System.out.println(e.getCause());
+                        e.printStackTrace();
+                    }
+
                 } else {
                     Object obj = ois.readObject();
                     if (obj == null) {
                         System.out.println("obj is null");
                         continue;
                     }
-                    
+
                     SubmissionSet.setSubmissions((HashMap<Integer, Submission>) obj);
-                    
-                    Folder ss =(Folder) ois.readObject();
-                    ss.write(root);
-                    
-                    
+
+                    Folder ss = (Folder) ois.readObject();
+                    try {
+                        ss.write(root);
+                    } catch (Exception e) {
+                        System.out.println(e.getCause());
+                        e.printStackTrace();
+                    }
+
                     //System.out.println("submission updated");
-                    
                     oos.writeObject(true);
                     oos.flush();
                 }
-                
+
             }
 
         } catch (Exception e) {
