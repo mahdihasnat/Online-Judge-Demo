@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -83,33 +84,40 @@ public class RegisterFXMLController implements Initializable {
             LocalUser.sendServer(new User(Name.getText(), Handle.getText(), Email.getText(), Country.getText(), University.getText(), Password.getText()));
 
             System.out.println("reg requert sent");
+            PromptLavel.setText("Registration Request sent");
             Boolean rep = null;
             do {
                 rep = (Boolean) LocalUser.read();
             } while (rep == null);
             if (rep) {
-                PromptLavel.setText("Registration going on");
-                try {
-                    rep = null;
-                    do {
-                        rep = (Boolean) LocalUser.read();
-                    } while (rep == null);
-                    System.out.println("Repa=  " + rep);
-                    if (rep) {
-                        System.out.println("reg success");
-                        PromptLavel.setText("Registration mail sent");
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/OnlineJudge/User/VerificationFXML.fxml"));
-                        Parent root = loader.load();
-                        VerificationFXMLController controller = loader.getController();
-                        controller.setMailaddress(Email.getText());
-                        OnlineJudge.PrimaryStage.setScene(new Scene(root));
-                    } else {
-                        PromptLavel.setText("Invalid mail or error sending mail");
-                        
+                PromptLavel.setText("Please wait for reply ");
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        try {
+                            Boolean rep = null;
+                            do {
+                                rep = (Boolean) LocalUser.read();
+                            } while (rep == null);
+                            System.out.println("Repa=  " + rep);
+                            if (rep) {
+                                System.out.println("reg success");
+                                PromptLavel.setText("Registration mail sent");
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/OnlineJudge/User/VerificationFXML.fxml"));
+                                Parent root = loader.load();
+                                VerificationFXMLController controller = loader.getController();
+                                controller.setMailaddress(Email.getText());
+                                OnlineJudge.PrimaryStage.setScene(new Scene(root));
+                            } else {
+                                PromptLavel.setText("Invalid mail or error sending mail");
+
+                            }
+                        } catch (IOException ex) {
+                            Logger.getLogger(ProblemShowFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
-                } catch (IOException ex) {
-                    Logger.getLogger(ProblemShowFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                });
 
             } else {
                 PromptLavel.setText("Try Another Handle");

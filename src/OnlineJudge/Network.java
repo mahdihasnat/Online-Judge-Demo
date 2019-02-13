@@ -62,6 +62,7 @@ class UpdateFromServer extends Thread {
 
             while (true) {
                 boolean we = (boolean) ois.readObject();
+                
                 if (we) {
                     Object obj = ois.readObject();
                     if (obj == null) {
@@ -100,6 +101,7 @@ class UpdateFromServer extends Thread {
                     oos.writeObject(true);
                     oos.flush();
                 }
+                //Thread.sleep(2000);
 
             }
 

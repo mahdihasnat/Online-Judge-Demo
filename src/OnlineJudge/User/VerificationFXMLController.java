@@ -42,6 +42,18 @@ public class VerificationFXMLController implements Initializable {
 
     @FXML
     private void BackButtonClicked(ActionEvent event) {
+        System.out.println("BackButtonClicked Button Clicked");
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/OnlineJudge/User/RegisterFXML.fxml"));
+
+            Scene scene = new Scene(root);
+
+            OnlineJudge.PrimaryStage.setScene(scene);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+        }
+        
     }
 
     @FXML

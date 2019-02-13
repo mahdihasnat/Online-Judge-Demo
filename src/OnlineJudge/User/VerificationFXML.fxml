@@ -8,10 +8,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="OnlineJudge.User.VerificationFXMLController">
    <top>
-      <Button mnemonicParsing="false" onAction="#BackButtonClicked" text="Back" BorderPane.alignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#BackButtonClicked" text="Back" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin></Button>
    </top>
    <center>
       <VBox fillWidth="false" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
@@ -35,6 +37,9 @@
       </VBox>
    </center>
    <bottom>
-      <Button mnemonicParsing="false" onAction="#VerifyCode" text="Submit" BorderPane.alignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#VerifyCode" text="Submit" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" />
+         </BorderPane.margin></Button>
    </bottom>
 </BorderPane>
